@@ -1,23 +1,20 @@
 import { Component } from '@angular/core';
+import { DbzService } from '../services/dbz.service';
 import { Character } from '../interfaces/character.interface';
 
 @Component({
   selector: 'app-main-page-dbz',
-  templateUrl: './main-page.component.html'
+  templateUrl: './main-page.component.html',
 })
-
-export class MainPageComponent{
-  public characterList:Character[] = [{
-    name:'krillin',
-    poder:1000
-  },
-  {
-    name:'goku',
-    poder:9000
+export class MainPageComponent {
+  constructor(public dbzService:DbzService){}
+  get characters():Character[]{
+    return [...this.dbzService.characterList];
   }
-]
- onNewCharacter(character:Character):void{
-  this.characterList.push(character);
- }
-
+  onDeleteId(id:string|undefined):void{
+    this.dbzService.onDelete(id);
+  }
+  onNewCharacter(character:Character){
+    this.dbzService.onNewCharacter(character);
+  }
 }
