@@ -11,7 +11,7 @@ export class MainPageComponent {
   get characters():Character[]{
     return [...this.dbzService.characterList];
   }
-  onDeleteId(id:string|undefined):void{
+  onDeleteId(id:string):void{
     this.dbzService.onDelete(id);
   }
   onNewCharacter(character:Character){
